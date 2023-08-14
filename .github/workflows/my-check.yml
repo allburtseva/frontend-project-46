@@ -1,0 +1,19 @@
+name: test-and-lint
+
+on: push
+
+jobs:
+  check-errors:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v3
+
+      - name: install
+        run: make install
+
+      - name: lint
+        run: make lint
+
+      - name: test
+        run: make test
+      
