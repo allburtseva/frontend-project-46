@@ -11,7 +11,7 @@ const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', 
 
 const expected = fs.readFileSync(path.resolve(process.cwd(), '__fixtures__/expected-json.txt'), 'utf-8');
 
-test('gendiff flat objects', () => {
+test('gendiff flat json objects', () => {
   const file1 = getFixturePath('file1.json');
   const file2 = getFixturePath('file2.json');
   expect(genDiff(file1, file2)).toEqual(expected);
