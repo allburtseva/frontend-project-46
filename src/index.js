@@ -1,5 +1,21 @@
-import getParsedFile from './parsers.js';
+import fs from 'fs';
+import path from 'path';
+import process from 'process';
+import getParsedData from './parsers.js';
 import buildTree from './buildtree.js';
+
+const getFileContent = (fileName) => {
+  const absolutePath = path.resolve(process.cwd(), fileName);
+  const data = fs.readFileSync(absolutePath, 'utf-8');
+  return data;
+};
+
+const getParsedFile = (filepath) => {
+  const extension = path.extname(filepath);
+  const data = getFileContent(filepath);
+  const parsedData = getParsedData(data, extension);
+  return parsedData;
+};
 
 const genDiff = (filepath1, filepath2) => {
   const file1 = getParsedFile(filepath1);
