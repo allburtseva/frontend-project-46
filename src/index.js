@@ -24,5 +24,3 @@ const genDiff = (filepath1, filepath2) => {
 };
 
 export default genDiff;
-
-console.log(JSON.stringify(genDiff('/home/allburtseva/education_projects/frontend-project-46/__fixtures__/file1.json', '/home/allburtseva/education_projects/frontend-project-46/__fixtures__/file2.json'), null, 2));
