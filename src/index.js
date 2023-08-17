@@ -3,6 +3,7 @@ import path from 'path';
 import process from 'process';
 import getParsedData from './parsers.js';
 import buildTree from './buildtree.js';
+import makeStylish from './stylish.js';
 
 const getFileContent = (fileName) => {
   const absolutePath = path.resolve(process.cwd(), fileName);
@@ -17,10 +18,16 @@ const getParsedFile = (filepath) => {
   return parsedData;
 };
 
-const genDiff = (filepath1, filepath2) => {
+const genDiff = (filepath1, filepath2, formatter = 'stylish') => {
   const file1 = getParsedFile(filepath1);
   const file2 = getParsedFile(filepath2);
-  return buildTree(file1, file2);
+  const tree = buildTree(file1, file2);
+  switch (formatter) {
+    case 'stylish':
+      return makeStylish(tree);
+    default:
+      throw new Error('Specify the output format');
+  }
 };
 
 export default genDiff;

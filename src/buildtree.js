@@ -9,33 +9,27 @@ const buildTree = (obj1, obj2) => {
     const value1 = obj1[key];
     const value2 = obj2[key];
     if (!keys1.includes(key)) {
-      if (!_.isObject(value2)) {
-        return { key, status: 'added', value: value2 };
-      }
-      return { key, status: 'added', value: _.cloneDeep(value2) };
+      return { key, status: 'added', value: value2 };
     }
     if (!keys2.includes(key)) {
-      if (!_.isObject(value2)) {
-        return { key, status: 'deleted', value: value1 };
-      }
-      return { key, status: 'deleted', value: _.cloneDeep(value1) };
+      return { key, status: 'deleted', value: value1 };
     }
     if (!_.isEqual(value1, value2)) {
       if (_.isObject(value1) && _.isObject(value2)) {
         return {
           key,
           status: 'nested',
-          value: buildTree(value1, value2),
+          children: buildTree(value1, value2),
         };
       }
       return {
         key,
         status: 'changed',
-        oldValue: _.cloneDeep(value1),
-        newValue: _.cloneDeep(value2),
+        oldValue: value1,
+        newValue: value2,
       };
     }
-    return { key, status: 'unchanged', value: _.cloneDeep(value1) };
+    return { key, status: 'unchanged', value: value1 };
   });
   return tree;
 };
