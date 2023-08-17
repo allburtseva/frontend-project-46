@@ -1,8 +1,8 @@
 {
   "name": "@hexlet/code",
   "version": "1.0.0",
-  "description": "[![Actions Status](https://github.com/allburtseva/frontend-project-46/workflows/hexlet-check/badge.svg)](https://github.com/allburtseva/frontend-project-46/actions)",
-  "main": "index.js",
+  "description": "gendiff js package and CLI-utility",
+  "main": "src/index.js",
   "type": "module",
   "bin": {
     "gendiff": "bin/gendiff.js"
@@ -10,8 +10,13 @@
   "scripts": {
     "test": "npx jest"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/allburtseva/frontend-project-46.git"
+  },
+  "author": "Alexandra Burtseva",
   "license": "ISC",
+  "homepage": "https://github.com/allburtseva/frontend-project-46#readme",
   "dependencies": {
     "commander": "^11.0.0",
     "js-yaml": "^4.1.0",
