@@ -1,5 +1,15 @@
 import _ from 'lodash';
 
+const normalizeValue = (value) => {
+  if (_.isObject(value)) {
+    return '[complex value]';
+  }
+  if (typeof value === 'string') {
+    return `'${value}'`;
+  }
+  return value;
+};
+
 const makePlain = (tree) => {
   const iter = (obj, parentName) => obj.flatMap((node) => {
     const {
@@ -7,20 +17,12 @@ const makePlain = (tree) => {
     } = node;
     const name = parentName === '' ? `${key}` : `${parentName}.${key}`;
     switch (status) {
-      case 'added': {
-        const val = typeof value === 'string' ? `'${value}'` : value;
-        const addedValue = _.isObject(value) ? '[complex value]' : val;
-        return `Property '${name}' was added with value: ${addedValue}`;
-      }
+      case 'added':
+        return `Property '${name}' was added with value: ${normalizeValue(value)}`;
       case 'deleted':
         return `Property '${name}' was removed`;
-      case 'changed': {
-        const old = typeof oldValue === 'string' ? `'${oldValue}'` : oldValue;
-        const upd = typeof newValue === 'string' ? `'${newValue}'` : newValue;
-        const oldStr = _.isObject(oldValue) ? '[complex value]' : `${old}`;
-        const updatedStr = _.isObject(newValue) ? '[complex value]' : `${upd}`;
-        return `Property '${name}' was updated. From ${oldStr} to ${updatedStr}`;
-      }
+      case 'changed':
+        return `Property '${name}' was updated. From ${normalizeValue(oldValue)} to ${normalizeValue(newValue)}`;
       case 'nested': {
         return iter(children, name);
       }
