@@ -14,8 +14,6 @@ const makePlain = (tree) => {
       }
       case 'deleted':
         return `Property '${name}' was removed`;
-      case 'unchanged':
-        return [];
       case 'changed': {
         const old = typeof oldValue === 'string' ? `'${oldValue}'` : oldValue;
         const upd = typeof newValue === 'string' ? `'${newValue}'` : newValue;
