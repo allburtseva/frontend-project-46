@@ -10,4 +10,4 @@
 
 
 ## ASCIINEMA
-[![asciicast](https://asciinema.org/a/eTZI2w7BadcY2RyzX6zIJNMxb.svg)](https://asciinema.org/a/eTZI2w7BadcY2RyzX6zIJNMxb)
+[gendiff demo](https://asciinema.org/a/eTZI2w7BadcY2RyzX6zIJNMxb)
