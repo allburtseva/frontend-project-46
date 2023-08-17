@@ -10,4 +10,4 @@
 
 
 ## ASCIINEMA
-[gendiff demo](https://asciinema.org/a/Opm9Dg6kaNvhPxIaq4NM0L74R/ "gendiff")
+[gendiff demo]([https://asciinema.org/a/Opm9Dg6kaNvhPxIaq4NM0L74R/ "gendiff"](https://asciinema.org/a/qFzCFzVEEYD6flrjrgpAnqoF2))
