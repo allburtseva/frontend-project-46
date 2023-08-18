@@ -30,7 +30,7 @@ const makeStylish = (tree) => {
       case 'nested':
         return `${getIndent(depth)}  ${key}: {\n${iter(children, depth + 1)}\n${getIndent(depth)}  }`;
       default:
-        throw new Error('Incorrect type of node!');
+        throw new Error(`'${status}' is incorrect type of node!`);
     }
   }).join('\n');
   return `{\n${iter(tree, 1)}\n}`;

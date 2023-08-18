@@ -12,7 +12,7 @@ const getFileContent = (fileName) => {
 };
 
 const getParsedFile = (filepath) => {
-  const extension = path.extname(filepath);
+  const extension = path.extname(filepath).substring(1);
   const data = getFileContent(filepath);
   const parsedData = getParsedData(data, extension);
   return parsedData;

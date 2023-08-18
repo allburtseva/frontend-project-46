@@ -2,7 +2,7 @@ import makeStylish from './stylish.js';
 import makePlain from './plain.js';
 import makeJSON from './json.js';
 
-const formatTree = (tree, format = 'stylish') => {
+const formatTree = (tree, format) => {
   switch (format) {
     case 'stylish':
       return makeStylish(tree);
@@ -11,7 +11,7 @@ const formatTree = (tree, format = 'stylish') => {
     case 'json':
       return makeJSON(tree);
     default:
-      throw new Error('Incorrect output format!');
+      throw new Error(`Incorrect output format '${format}'`);
   }
 };
 
