@@ -13,7 +13,7 @@ const normalizeValue = (value) => {
 const makePlain = (tree) => {
   const iter = (obj, parentName) => obj.flatMap((node) => {
     const {
-      key, status, value, oldValue, newValue, children,
+      key, status, value,
     } = node;
     const name = parentName === '' ? `${key}` : `${parentName}.${key}`;
     switch (status) {
@@ -22,9 +22,9 @@ const makePlain = (tree) => {
       case 'deleted':
         return `Property '${name}' was removed`;
       case 'changed':
-        return `Property '${name}' was updated. From ${normalizeValue(oldValue)} to ${normalizeValue(newValue)}`;
+        return `Property '${name}' was updated. From ${normalizeValue(node.oldValue)} to ${normalizeValue(node.newValue)}`;
       case 'nested': {
-        return iter(children, name);
+        return iter(node.children, name);
       }
       default:
         return [];

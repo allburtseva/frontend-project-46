@@ -13,7 +13,7 @@ const stringify = (data, depth = 1) => {
 const makeStylish = (tree) => {
   const iter = (obj, depth) => obj.map((node) => {
     const {
-      key, value, oldValue, newValue, status, children,
+      key, value, status,
     } = node;
     switch (status) {
       case 'added':
@@ -21,14 +21,14 @@ const makeStylish = (tree) => {
       case 'deleted':
         return `${getIndent(depth)}- ${key}: ${stringify(value, depth + 1)}`;
       case 'changed': {
-        const firstLine = `${getIndent(depth)}- ${key}: ${stringify(oldValue, depth + 1)}`;
-        const secondLine = `${getIndent(depth)}+ ${key}: ${stringify(newValue, depth + 1)}`;
+        const firstLine = `${getIndent(depth)}- ${key}: ${stringify(node.oldValue, depth + 1)}`;
+        const secondLine = `${getIndent(depth)}+ ${key}: ${stringify(node.newValue, depth + 1)}`;
         return `${firstLine}\n${secondLine}`;
       }
       case 'unchanged':
         return `${getIndent(depth)}  ${key}: ${stringify(value, depth + 1)}`;
       case 'nested':
-        return `${getIndent(depth)}  ${key}: {\n${iter(children, depth + 1)}\n${getIndent(depth)}  }`;
+        return `${getIndent(depth)}  ${key}: {\n${iter(node.children, depth + 1)}\n${getIndent(depth)}  }`;
       default:
         throw new Error(`'${status}' is incorrect type of node!`);
     }
