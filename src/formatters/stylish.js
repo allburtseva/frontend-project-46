@@ -13,20 +13,20 @@ const stringify = (data, depth = 1) => {
 const makeStylish = (tree) => {
   const iter = (obj, depth) => obj.map((node) => {
     const {
-      key, value, status,
+      key, status,
     } = node;
     switch (status) {
       case 'added':
-        return `${getIndent(depth)}+ ${key}: ${stringify(value, depth + 1)}`;
+        return `${getIndent(depth)}+ ${key}: ${stringify(node.value, depth + 1)}`;
       case 'deleted':
-        return `${getIndent(depth)}- ${key}: ${stringify(value, depth + 1)}`;
+        return `${getIndent(depth)}- ${key}: ${stringify(node.value, depth + 1)}`;
       case 'changed': {
         const firstLine = `${getIndent(depth)}- ${key}: ${stringify(node.oldValue, depth + 1)}`;
         const secondLine = `${getIndent(depth)}+ ${key}: ${stringify(node.newValue, depth + 1)}`;
         return `${firstLine}\n${secondLine}`;
       }
       case 'unchanged':
-        return `${getIndent(depth)}  ${key}: ${stringify(value, depth + 1)}`;
+        return `${getIndent(depth)}  ${key}: ${stringify(node.value, depth + 1)}`;
       case 'nested':
         return `${getIndent(depth)}  ${key}: {\n${iter(node.children, depth + 1)}\n${getIndent(depth)}  }`;
       default:

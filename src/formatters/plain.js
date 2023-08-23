@@ -13,12 +13,12 @@ const normalizeValue = (value) => {
 const makePlain = (tree) => {
   const iter = (obj, parentName) => obj.flatMap((node) => {
     const {
-      key, status, value,
+      key, status,
     } = node;
     const name = parentName === '' ? `${key}` : `${parentName}.${key}`;
     switch (status) {
       case 'added':
-        return `Property '${name}' was added with value: ${normalizeValue(value)}`;
+        return `Property '${name}' was added with value: ${normalizeValue(node.value)}`;
       case 'deleted':
         return `Property '${name}' was removed`;
       case 'changed':
